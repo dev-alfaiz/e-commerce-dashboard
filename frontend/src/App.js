@@ -2,7 +2,7 @@ import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import { Navbar } from "./components";
+import { Navbar, Footer } from "./components";
 
 function App() {
   return (
@@ -41,6 +41,7 @@ function App() {
           key={"profile"}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }

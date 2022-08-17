@@ -1,3 +1,8 @@
+.navbar-ul {
+  background-color: skyblue;
+  padding: 5px;
+  margin: 0px;
+}
 .navbar-ul li {
   display: inline-block;
   padding: 10px;
@@ -5,6 +10,17 @@
 
 .navbar-ul li a {
   margin: 0px 10px;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: skyblue;
 }
 
 @media (prefers-reduced-motion: no-preference) {
