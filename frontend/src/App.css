@@ -23,6 +23,37 @@
   background-color: skyblue;
 }
 
+.signup {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-box {
+  margin: 10px;
+  padding: 7px;
+  width: 300px;
+  border: 1px solid skyblue;
+}
+
+.register-button {
+  margin: 10px;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: skyblue;
+  cursor: pointer;
+  width: 150px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -9,8 +9,9 @@ export const Navbar = () => {
           <Link to={"/"}>Products</Link>
           <Link to={"/add"}>Add Product</Link>
           <Link to={"/update"}>Update Product</Link>
-          <Link to={"/logout"}>Logout</Link>
+          <Link to={"/login"}>Login</Link>
           <Link to={"/profile"}>Profile</Link>
+          <Link to={"/signup"}>Signup</Link>
         </li>
       </ul>
     </div>
