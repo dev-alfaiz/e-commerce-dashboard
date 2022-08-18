@@ -1,12 +1,28 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
 
-  const collectData = () => {
-    console.warn({ name, email, password });
+  const collectData = async () => {
+    let response = await fetch("http://localhost:5050/register", {
+      method: "POST",
+      body: JSON.stringify({ name, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    response = await response.json();
+
+    if (response) {
+      setName("");
+      setEmail("");
+      setPassword("");
+      navigate("/");
+    } else {
+      alert(response);
+    }
   };
 
   return (

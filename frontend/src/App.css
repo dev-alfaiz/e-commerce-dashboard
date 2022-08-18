@@ -10,9 +10,13 @@
 
 .navbar-ul li a {
   margin: 0px 10px;
-  color: #fff;
+  color: #000;
   text-decoration: none;
   padding: 5px;
+}
+
+.navbar-ul li a:hover {
+  color: #fff;
 }
 
 .footer {
@@ -52,6 +56,10 @@
   background-color: skyblue;
   cursor: pointer;
   width: 150px;
+}
+
+.register-button:hover {
+  box-shadow: inset 0px 0px 15px 1px #5e5e5e;
 }
 
 @media (prefers-reduced-motion: no-preference) {
