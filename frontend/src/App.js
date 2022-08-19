@@ -2,7 +2,7 @@ import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import { Navbar, Footer } from "./components";
+import { Navbar, Footer, PrivateComponent } from "./components";
 import {
   AddProduct,
   Login,
@@ -17,27 +17,34 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route exact path={"/"} element={<Products />} key={"products"} />
-        <Route
-          exact
-          path={"/products"}
-          element={<Products />}
-          key={"products"}
-        />
-        <Route
-          exact
-          path={"/add"}
-          element={<AddProduct />}
-          key={"add-product"}
-        />
-        <Route
-          exact
-          path={"/update"}
-          element={<UpdateProduct />}
-          key={"update-product"}
-        />
+        <Route element={<PrivateComponent />}>
+          <Route exact path={"/"} element={<Products />} key={"products"} />
+          <Route
+            exact
+            path={"/products"}
+            element={<Products />}
+            key={"products"}
+          />
+          <Route
+            exact
+            path={"/add"}
+            element={<AddProduct />}
+            key={"add-product"}
+          />
+          <Route
+            exact
+            path={"/update"}
+            element={<UpdateProduct />}
+            key={"update-product"}
+          />
+          <Route
+            exact
+            path={"/profile"}
+            element={<Profile />}
+            key={"profile"}
+          />
+        </Route>
         <Route exact path={"/login"} element={<Login />} key={"login"} />
-        <Route exact path={"/profile"} element={<Profile />} key={"profile"} />
         <Route exact path={"/signup"} element={<Signup />} key={"profile"} />
       </Routes>
       <Footer />

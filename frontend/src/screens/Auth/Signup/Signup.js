@@ -19,11 +19,21 @@ export const Signup = () => {
       setName("");
       setEmail("");
       setPassword("");
+      localStorage.setItem("user", JSON.stringify(response));
       navigate("/");
     } else {
       alert(response);
     }
   };
+
+  React.useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    } else {
+      navigate("/signup");
+    }
+  }, [navigate]);
 
   return (
     <div className="signup">
