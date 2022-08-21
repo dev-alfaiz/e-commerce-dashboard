@@ -16,7 +16,7 @@ export const Products = () => {
 
   return (
     <div className="products">
-      <ProductList list={products} />
+      <ProductList list={products} refreshList={getProducts} />
     </div>
   );
 };

@@ -92,6 +92,13 @@
   width: 150px;
 }
 
+.operation-button {
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: skyblue;
+  cursor: pointer;
+}
+
 .register-button:hover {
   box-shadow: inset 0px 0px 15px 1px #5e5e5e;
 }
@@ -99,6 +106,11 @@
 .login-button:hover {
   box-shadow: inset 0px 0px 15px 1px #5e5e5e;
 }
+
+.operation-button:hover {
+  box-shadow: inset 0px 0px 15px 1px #5e5e5e;
+}
+
 .profile {
   display: flex;
   justify-content: center;
