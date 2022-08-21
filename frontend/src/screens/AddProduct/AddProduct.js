@@ -26,7 +26,10 @@ export const AddProduct = () => {
     let response = await fetch("http://localhost:5050/add-product", {
       method: "POST",
       body: JSON.stringify(payloadData),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
     });
     response = await response.json();
     if (response) {

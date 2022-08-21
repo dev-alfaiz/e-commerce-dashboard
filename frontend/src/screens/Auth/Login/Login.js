@@ -23,12 +23,11 @@ export const Login = () => {
         headers: { "Content-Type": "application/json" },
       });
       response = await response.json();
-
-      console.warn(response);
-      if (response.name) {
+      if (response.user.name) {
         setEmail("");
         setPassword("");
-        localStorage.setItem("user", JSON.stringify(response));
+        localStorage.setItem("user", JSON.stringify(response?.user));
+        localStorage.setItem("token", JSON.stringify(response?.auth));
         navigate("/");
       } else {
         alert(response.result);

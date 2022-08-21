@@ -20,7 +20,8 @@ export const Signup = () => {
         setName("");
         setEmail("");
         setPassword("");
-        localStorage.setItem("user", JSON.stringify(response));
+        localStorage.setItem("user", JSON.stringify(response?.result));
+        localStorage.setItem("token", JSON.stringify(response?.auth));
         navigate("/");
       } else {
         alert(response);

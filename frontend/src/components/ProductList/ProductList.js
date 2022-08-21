@@ -1,11 +1,13 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ProductList = ({ list, updateList, refreshList }) => {
-  const navigate = useNavigate();
   const deleteProduct = async (id) => {
     let response = await fetch(`http://localhost:5050/product/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
     });
     response = await response.json();
     if (response.acknowledged && response.deletedCount === 1) {
@@ -20,7 +22,11 @@ export const ProductList = ({ list, updateList, refreshList }) => {
     let term = event.target.value;
     term.toLowerCase();
     if (term) {
-      let response = await fetch(`http://localhost:5050/search/${term}`);
+      let response = await fetch(`http://localhost:5050/search/${term}`, {
+        headers: {
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      });
       response = await response.json();
       updateList(response);
     } else {

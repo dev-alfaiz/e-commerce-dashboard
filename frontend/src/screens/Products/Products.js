@@ -5,7 +5,11 @@ export const Products = () => {
   const [products, setProducts] = React.useState([]);
 
   const getProducts = async () => {
-    let response = await fetch("http://localhost:5050/products");
+    let response = await fetch("http://localhost:5050/products", {
+      headers: {
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+    });
     response = await response.json();
     setProducts(response);
   };
