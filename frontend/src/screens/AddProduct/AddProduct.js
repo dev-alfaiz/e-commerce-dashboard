@@ -6,9 +6,15 @@ export const AddProduct = () => {
   const [category, setCategory] = React.useState("");
   const [company, setCompany] = React.useState("");
 
-  const handleAddProduct = () => {
-    console.log({ name, price, category, company });
-    console.log("TYPEEEEEEEEE", typeof price);
+  const handleAddProduct = async () => {
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    let response = await fetch("http://localhost:5050/add-product", {
+      method: "POST",
+      body: JSON.stringify({ name, price, category, company, userId }),
+      headers: { "Content-Type": "application/json" },
+    });
+    response = await response.json();
+    console.log("ADD PRODUCT:", response);
   };
 
   return (
@@ -46,6 +52,7 @@ export const AddProduct = () => {
         >
           <option>Company</option>
           <option value={"Samsung"}>Samsung</option>
+          <option value={"Vivo"}>Vivo</option>
           <option value={"LG"}>LG</option>
           <option value={"Tupperware"}>Tupperware</option>
         </select>
