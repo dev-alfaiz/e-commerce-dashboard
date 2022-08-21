@@ -72,4 +72,19 @@ app.put("/product/:id", async (request, response) => {
   response.send(result);
 });
 
+app.get("/search/:term", async (request, response) => {
+  let result = await Product.find({
+    $or: [
+      { name: { $regex: request.params.term.toLowerCase() } },
+      { company: { $regex: request.params.term.toLowerCase() } },
+      { category: { $regex: request.params.term.toLowerCase() } },
+    ],
+  });
+  if (result.length) {
+    response.send(result);
+  } else {
+    response.send({ result: "No Record Found!" });
+  }
+});
+
 app.listen(5050);

@@ -14,6 +14,11 @@ export const ProductList = ({ list, refreshList }) => {
       alert(response.result);
     }
   };
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="product-list">
       <h1>Products List</h1>
@@ -30,10 +35,10 @@ export const ProductList = ({ list, refreshList }) => {
           return (
             <ul key={product._id}>
               <li>{index + 1}</li>
-              <li>{product.name}</li>
+              <li>{capitalizeFirstLetter(product.name)}</li>
               <li>$ {product.price}</li>
-              <li>{product.category}</li>
-              <li>{product.company}</li>
+              <li>{capitalizeFirstLetter(product.category)}</li>
+              <li>{capitalizeFirstLetter(product.company)}</li>
               <li>
                 <button
                   className="operation-button"

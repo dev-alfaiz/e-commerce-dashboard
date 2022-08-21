@@ -14,10 +14,18 @@ export const AddProduct = () => {
       setIsError(true);
       return false;
     }
+
     const userId = JSON.parse(localStorage.getItem("user"))._id;
+    let payloadData = {
+      name: name.toLowerCase(),
+      price: price.toLowerCase(),
+      category: category.toLowerCase(),
+      company: company.toLowerCase(),
+      userId: userId,
+    };
     let response = await fetch("http://localhost:5050/add-product", {
       method: "POST",
-      body: JSON.stringify({ name, price, category, company, userId }),
+      body: JSON.stringify(payloadData),
       headers: { "Content-Type": "application/json" },
     });
     response = await response.json();

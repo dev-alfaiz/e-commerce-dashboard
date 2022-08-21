@@ -23,10 +23,15 @@ export const UpdateProduct = () => {
   };
 
   const handleUpdateProduct = async () => {
-    console.log({ name, price, category, company });
+    let payloadData = {
+      name: name.toLowerCase(),
+      price: price.toLowerCase(),
+      category: category.toLowerCase(),
+      company: company.toLowerCase(),
+    };
     let response = await fetch(`http://localhost:5050/product/${params.id}`, {
       method: "PUT",
-      body: JSON.stringify({ name, price, category, company }),
+      body: JSON.stringify(payloadData),
       headers: { "Content-Type": "application/json" },
     });
     response = await response.json();
@@ -37,6 +42,10 @@ export const UpdateProduct = () => {
     }
   };
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="update-product">
       <h1>Update Product</h1>
@@ -45,7 +54,7 @@ export const UpdateProduct = () => {
           className="input-box"
           type={"text"}
           placeholder={"Enter Product Name"}
-          value={name}
+          value={capitalizeFirstLetter(name)}
           onChange={(event) => setName(event.target.value)}
         />
 
@@ -59,7 +68,7 @@ export const UpdateProduct = () => {
 
         <select
           className="input-box-select"
-          value={category}
+          value={capitalizeFirstLetter(category)}
           onChange={(event) => setCategory(event.target.value)}
         >
           <option>Category</option>
@@ -70,7 +79,7 @@ export const UpdateProduct = () => {
 
         <select
           className="input-box-select"
-          value={company}
+          value={capitalizeFirstLetter(company)}
           onChange={(event) => setCompany(event.target.value)}
         >
           <option>Company</option>
