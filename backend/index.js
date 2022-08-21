@@ -44,4 +44,13 @@ app.get("/products", async (request, response) => {
   }
 });
 
+app.delete("/product/:id", async (request, response) => {
+  const result = await Product.deleteOne({ _id: request.params.id });
+  if (result.acknowledged && result.deletedCount === 1) {
+    response.send(result);
+  } else {
+    response.send({ result: "No Product Deleted with this ID" });
+  }
+});
+
 app.listen(5050);
