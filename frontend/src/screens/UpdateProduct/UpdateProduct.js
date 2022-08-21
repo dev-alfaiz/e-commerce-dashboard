@@ -1,8 +1,9 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const UpdateProduct = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [name, setName] = React.useState("");
   const [price, setPrice] = React.useState(0);
   const [category, setCategory] = React.useState("");
@@ -21,8 +22,19 @@ export const UpdateProduct = () => {
     setCompany(response.company);
   };
 
-  const handleUpdateProduct = () => {
+  const handleUpdateProduct = async () => {
     console.log({ name, price, category, company });
+    let response = await fetch(`http://localhost:5050/product/${params.id}`, {
+      method: "PUT",
+      body: JSON.stringify({ name, price, category, company }),
+      headers: { "Content-Type": "application/json" },
+    });
+    response = await response.json();
+
+    if (response) {
+      alert("Product Updated Successfully!");
+      navigate("/");
+    }
   };
 
   return (
