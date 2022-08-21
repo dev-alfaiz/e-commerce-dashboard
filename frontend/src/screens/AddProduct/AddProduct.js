@@ -5,8 +5,13 @@ export const AddProduct = () => {
   const [price, setPrice] = React.useState(0);
   const [category, setCategory] = React.useState("");
   const [company, setCompany] = React.useState("");
+  const [isError, setIsError] = React.useState(false);
 
   const handleAddProduct = async () => {
+    if (!name || !price || !category || !company) {
+      setIsError(true);
+      return false;
+    }
     const userId = JSON.parse(localStorage.getItem("user"))._id;
     let response = await fetch("http://localhost:5050/add-product", {
       method: "POST",
@@ -14,7 +19,14 @@ export const AddProduct = () => {
       headers: { "Content-Type": "application/json" },
     });
     response = await response.json();
-    console.log("ADD PRODUCT:", response);
+    if (response) {
+      alert("Product Added Successfully!");
+      setName("");
+      setPrice(0);
+      setCategory("");
+      setCompany("");
+      setIsError(false);
+    }
   };
 
   return (
@@ -28,6 +40,10 @@ export const AddProduct = () => {
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
+        {isError && !name && (
+          <span className="error-span">Enter Valid Name</span>
+        )}
+
         <input
           className="input-box"
           type={"number"}
@@ -35,6 +51,10 @@ export const AddProduct = () => {
           value={price}
           onChange={(event) => setPrice(event.target.value)}
         />
+        {isError && !price && (
+          <span className="error-span">Enter Valid Price</span>
+        )}
+
         <select
           className="input-box-select"
           value={category}
@@ -45,6 +65,10 @@ export const AddProduct = () => {
           <option value={"Mobile"}>Mobile</option>
           <option value={"Utensils"}>Utensils</option>
         </select>
+        {isError && !category && (
+          <span className="error-span">Select Valid Category</span>
+        )}
+
         <select
           className="input-box-select"
           value={company}
@@ -53,9 +77,14 @@ export const AddProduct = () => {
           <option>Company</option>
           <option value={"Samsung"}>Samsung</option>
           <option value={"Vivo"}>Vivo</option>
+          <option value={"Realme"}>Realme</option>
           <option value={"LG"}>LG</option>
           <option value={"Tupperware"}>Tupperware</option>
         </select>
+        {isError && !company && (
+          <span className="error-span">Select Valid Company</span>
+        )}
+
         <button
           className="login-button"
           type="button"
