@@ -18,6 +18,10 @@
   color: #fff;
 }
 
+.navbar-right {
+  text-align: right;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -80,6 +84,33 @@
 
 .login-button:hover {
   box-shadow: inset 0px 0px 15px 1px #5e5e5e;
+}
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.profile-table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.profile-table > tr > td {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.profile-table > tr > th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.logo {
 }
 
 @media (prefers-reduced-motion: no-preference) {

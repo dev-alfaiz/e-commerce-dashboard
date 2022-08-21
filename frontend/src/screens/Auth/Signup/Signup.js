@@ -8,21 +8,25 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const collectData = async () => {
-    let response = await fetch("http://localhost:5050/register", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
-    response = await response.json();
+    if (name && email && password) {
+      let response = await fetch("http://localhost:5050/register", {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      response = await response.json();
 
-    if (response) {
-      setName("");
-      setEmail("");
-      setPassword("");
-      localStorage.setItem("user", JSON.stringify(response));
-      navigate("/");
+      if (response) {
+        setName("");
+        setEmail("");
+        setPassword("");
+        localStorage.setItem("user", JSON.stringify(response));
+        navigate("/");
+      } else {
+        alert(response);
+      }
     } else {
-      alert(response);
+      alert("Please provide valid information!");
     }
   };
 
