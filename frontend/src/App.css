@@ -51,6 +51,13 @@
   align-items: center;
 }
 
+.update-product {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form-fields-wrapper {
   display: flex;
   flex-direction: column;

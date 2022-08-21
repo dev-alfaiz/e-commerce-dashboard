@@ -33,7 +33,7 @@ function App() {
           />
           <Route
             exact
-            path={"/update"}
+            path={"/update/:id"}
             element={<UpdateProduct />}
             key={"update-product"}
           />

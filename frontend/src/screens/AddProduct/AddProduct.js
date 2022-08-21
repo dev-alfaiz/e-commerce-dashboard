@@ -81,6 +81,7 @@ export const AddProduct = () => {
           <option value={"Samsung"}>Samsung</option>
           <option value={"Vivo"}>Vivo</option>
           <option value={"Realme"}>Realme</option>
+          <option value={"Poco"}>Poco</option>
           <option value={"LG"}>LG</option>
           <option value={"Tupperware"}>Tupperware</option>
         </select>

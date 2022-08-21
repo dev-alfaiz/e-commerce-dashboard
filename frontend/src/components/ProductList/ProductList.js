@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductList = ({ list, refreshList }) => {
   const deleteProduct = async (id) => {
@@ -40,6 +41,9 @@ export const ProductList = ({ list, refreshList }) => {
                 >
                   Delete
                 </button>
+                <Link to={`/update/${product._id}`}>
+                  <button className="operation-button">Update</button>
+                </Link>
               </li>
             </ul>
           );
