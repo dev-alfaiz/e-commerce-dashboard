@@ -16,7 +16,11 @@ export const Products = () => {
 
   return (
     <div className="products">
-      <ProductList list={products} refreshList={getProducts} />
+      <ProductList
+        list={products}
+        updateList={setProducts}
+        refreshList={getProducts}
+      />
     </div>
   );
 };

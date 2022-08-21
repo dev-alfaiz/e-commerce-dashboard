@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const ProductList = ({ list, refreshList }) => {
+export const ProductList = ({ list, updateList, refreshList }) => {
+  const navigate = useNavigate();
   const deleteProduct = async (id) => {
     let response = await fetch(`http://localhost:5050/product/${id}`, {
       method: "DELETE",
@@ -15,6 +16,18 @@ export const ProductList = ({ list, refreshList }) => {
     }
   };
 
+  const handleSearch = async (event) => {
+    let term = event.target.value;
+    term.toLowerCase();
+    if (term) {
+      let response = await fetch(`http://localhost:5050/search/${term}`);
+      response = await response.json();
+      updateList(response);
+    } else {
+      refreshList();
+    }
+  };
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -22,6 +35,12 @@ export const ProductList = ({ list, refreshList }) => {
   return (
     <div className="product-list">
       <h1>Products List</h1>
+      <input
+        type={"text"}
+        placeholder={"Search"}
+        className={"search-product-input"}
+        onChange={handleSearch}
+      />
       <ul>
         <li>S.No.</li>
         <li>Name</li>
@@ -30,7 +49,7 @@ export const ProductList = ({ list, refreshList }) => {
         <li>Company</li>
         <li>Operation</li>
       </ul>
-      {list &&
+      {list.length > 0 ? (
         list.map((product, index) => {
           return (
             <ul key={product._id}>
@@ -52,7 +71,10 @@ export const ProductList = ({ list, refreshList }) => {
               </li>
             </ul>
           );
-        })}
+        })
+      ) : (
+        <h1>No Record Found!</h1>
+      )}
     </div>
   );
 };
